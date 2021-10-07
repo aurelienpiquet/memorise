@@ -1,0 +1,21 @@
+{% extends 'memorize/base.html' %}
+
+{% block title %} Food Game {% endblock %}
+
+{% block content %}
+    {% include 'memorize/_flash.html' %}
+    <section class="container game">
+        <h1 class="text-center">{{ question }}</h1>
+        <ul class="d-flex justify-content-center">
+            {% for option in options %}
+            <li class="m-2">
+                <a class="btn btn-lg" href="{% url 'memorize:food-game-check' option=option pk=question.pk %}">
+                    {{ option | title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>    
+        {% include 'memorize/_score.html' %}
+    </section>  
+    
+{% endblock %}

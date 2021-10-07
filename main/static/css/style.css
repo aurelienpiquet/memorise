@@ -1,0 +1,14 @@
+li {
+    list-style-type: none;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+
+}
+
+body {
+    background-color: red;
+    color: blue;
+}

@@ -1,0 +1,18 @@
+{% extends 'memorize/base.html' %}
+ 
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <section class="container m-auto">
+        <h1 class="text-center mt-3">{{ title }}</h1>
+        <form action="" method="post" class="form-connection">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }} 
+            </table>
+            <div class="w-100 text-center mt-3">
+                <input class="btn btn-lg w-25" type="Submit" value="{{ submit }}">
+            </div>
+        </form>
+    </section>
+{% endblock %}

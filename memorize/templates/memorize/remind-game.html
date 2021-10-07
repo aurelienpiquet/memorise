@@ -1,0 +1,20 @@
+{% extends 'memorize/base.html' %}
+
+{% block title %} Reminder!  {% endblock %}
+
+{% block content %}
+    {% include 'memorize/_flash.html' %}
+    <section class="container game">
+        <h1 class="text-center">{{ question }}</h1>
+        <ul class="d-flex justify-content-center">
+            {% for item in tasks %}
+            <li class="m-2">
+                <a class="btn btn-lg" href="{% url 'memorize:reminder-game-check' pk=item.pk %}">
+                    {{ item.title | title }} 
+                </a>
+            </li>
+            {% endfor %}
+        </ul> 
+        {% include 'memorize/_score.html' %}   
+    </section>      
+{% endblock %}

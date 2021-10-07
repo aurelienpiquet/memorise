@@ -1,0 +1,15 @@
+<section class="container text-center mt-3">
+    <div class="score">
+        <div>
+            {% if tryied > 0 %}
+                <h2 class="mb-3">Votre Score : <br> {{ win }} sur {{ tryied }} {% if tryied > 1 %} questions {% else %} question {% endif %}</h2>
+                <form action="{% url 'memorize:reset-game-score-reminder' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Retour à zéro" class="btn">
+                </form>
+            {% else %}
+                <h2>Répondez aux questions!</h2>
+            {% endif %}
+        </div>
+    </div>
+</section>

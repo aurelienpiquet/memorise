@@ -1,0 +1,80 @@
+{% extends 'memorize/base.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <section class="container">
+            <h1 class="text-center m-3">{{ title }} {{ username | title }}</h1>  
+            <p class="text-center"><em>Votre dernière connexion était le {{ user.last_login_str }}.</em></p>
+            <section class="row flex-wrap justify-content-evenly align-item-start">
+                <div class="col-12 col-lg-4 section-form-todo">
+                    <h2 class="text-center mb-3">Ajouter une nouvelle tâche</h2>
+                    <form action="{% url 'memorize:create' %}" method="post">
+                        {% csrf_token %}
+                        <table>
+                            {{ form.as_p }}
+                        </table>
+                        <input id="submit" type="Submit" class="btn btn-lg" value="Ajouter une tache" hidden>
+                    </form>
+                    <div class="text-center w-50 m-auto">
+                        <img src="{% static 'img/logo_rec.png' %}" alt="" class="resp">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <h2 class="text-center"> Votre liste de tâches </h2>
+                    <ul class="mt-3">
+                        {% for item in tasks %}
+                        {% if item.status.pk != 3 %}
+                        <li class="list-group-item"> <!--style="background-color:{{ item.category.color }}">-->
+                            <a class="row align-items-center justify-content-center" type="submit" href="{% url 'memorize:checked' pk=item.pk %}" value="{% if item.status.pk %} Supprimer {% else %} Checked {% endif %}">
+                                <div class="col-2">
+                                    <img src="{{ item.category.thumbnail.url }}" alt="" class="resp">
+                                </div>
+                                <div class="col-9">
+                                    <h3 class="task">{{ item }} <span> (ajouter le {{ item.created_on_str }}) <i class="fas fa-running"></i></span></h3>
+                                    {% if item.status.title == "Effectuée" %}
+                                        <p><small>Cette tache a été réalisée, cliquez dessus pour la supprimer.</small></p>
+                                    {% else %}
+                                        <p><small>Cette tache n'a pas encore été réalisée.</small></p>
+                                    {% endif %}
+                                </div>    
+                                <div class="form-check form-switch col-1">
+                                    <input class="form-check-input m-auto" type="checkbox" id="flexSwitch-{{item.pk}}" {% if item.status.title == "Effectuée" %} checked {% endif %}>
+                                </div>
+                            </a>
+                        </li>   
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>  
+    {% else %}
+        <section class="container m-auto">
+            <h1 class="text-center m-5">Bienvenu sur Memories</h1>
+            <p class="text-center mb-5">Merci de vous connecter pour profiter de nos services! <a href="{% url 'account:login' %}">Cliquez-ici.</a></p>
+            <div class="w-25 text-center m-auto">
+                <img src="{% static 'img/logo_rec.png' %}" alt="logo" class="img-fluid">
+            </div>
+        </section>
+        {% endif %}
+        </section>
+{% endblock %}
+
+{% block footer %}
+        <script>
+            document.getElementById('id_category_0').checked = true;
+            document.getElementById('id_title').focus();
+            document.addEventListener('click', () => {
+                document.getElementById('id_title').focus();
+            })
+            let addSubmit = document.getElementById('submit')
+            document.addEventListener("keypress", (e) => {
+                if (e.keyCode === 13) {
+                 e.preventDefault();
+                 addSubmit.click();
+                }
+              });
+        </script>
+{% endblock %}

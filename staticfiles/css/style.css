@@ -1,0 +1,188 @@
+:root {
+    --blue : 207 22% 60%; /** #839cb0; **/
+    --orange : 35 100% 56%; /** #ffa11f **/
+    --dark-orange : 24 100% 56%;
+    --dark-blue : 207 22% 27%;
+    --red : 0 57% 62%;
+    --green : 114 59% 57%;
+    
+}
+
+body {
+    background-color: hsl(var(--blue) / 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+    padding: 15px 0px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.btn {
+    background-color: hsl(var(--orange) / 1);
+
+}
+
+.btn:hover {
+    background-color:hsl(var(--dark-orange) / 1);
+    transform:scale(1.2);
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+header {
+    background-color: hsl(var(--blue) / 1);
+    box-shadow: 2px 2px 2px 2px #ddd;
+    margin: 0;
+    padding: 0;
+}
+
+header > nav {
+    align-items: center;
+}
+
+nav > ul {
+    display : flex;
+    align-items: center;
+    padding: 10px;
+}
+
+nav > ul > li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #ddd;
+    font-size: 1.5em;
+}
+
+nav a:hover {
+    color: hsl(var(--orange) / 1);
+}
+
+#id_category {
+    display: flex;
+}
+
+#id_category li {
+    list-style-type: none;
+    margin: 5px;
+}
+
+#id_title {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.messages {
+    position:absolute;
+    top: 50px;
+    left: 500px;
+    width: 600px;
+    padding-left:0;
+    transition: all 0.5s ease;
+}
+
+.messages li {
+    text-align: center;
+}
+
+.error {
+    background-color: hsl(var(--red) / 1);
+    width: 100%;
+    font-size: 2em;
+    box-shadow : 1px 1px 2px 2px hsl(var(--red) / 1);
+    color: white;
+}
+
+.success {
+    background-color: hsl(var(--green) / 1);
+    width: 100%;
+    font-size: 2em;
+    box-shadow : 1px 1px 2px 2px hsl(var(--green) / 1);
+    color: white;
+}
+
+.game {
+    color: white;
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    border: 1px solid hsl(var(--dark-blue) / 1);
+    box-shadow : 5px 5px 5px 5px hsl(var(--dark-blue) / 1);
+    border-radius: 5px;
+    background-color: hsl(var(--dark-blue) / 1);
+    position: absolute;
+    right: -1000px;
+    top: 130px;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.score {
+    background-color: hsl(var(--blue) / 0.5);
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.score > div {
+    width: 100%;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ddd;
+}
+
+.score .btn {
+    background-color: hsl(var(--dark-orange) / 1);
+}
+
+.form-connection {
+    width: 80%;
+    margin: 0 auto;
+}
+
+table {
+    margin: 0 auto;
+}
+
+h3.task > span {
+    font-size: 0.7em;
+}
+
+.form-switch .form-check-input {
+    width: 3em;
+    height: 1.5em;
+}
+
+.form-switch .form-check-input:checked {
+    width: 3em;
+    height: 1.5em;  
+    transition: background-position 0.3s ease!important;
+}
+
+.form-switch {
+    padding-left:1rem!important;
+}
